@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44300598, g: 0.4921947, b: 0.5719239, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300637, g: 0.4921953, b: 0.5719249, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &362651828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -188,8 +188,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278193919
+  m_fontColor: {r: 1, g: 0.054901965, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -593,7 +593,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847606072}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07994bfe8b0e4adb97d706de5dea48d5, type: 3}
   m_Name: 
@@ -805,7 +805,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563393854}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07994bfe8b0e4adb97d706de5dea48d5, type: 3}
   m_Name: 
@@ -962,6 +962,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1134799989617770, guid: c539aa4fa1bac4b4da61761b0699b48b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4430574757597842, guid: c539aa4fa1bac4b4da61761b0699b48b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1015,7 +1019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2065151225
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1063,8 +1067,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278193919
+  m_fontColor: {r: 1, g: 0.053491518, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1278,7 +1282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521133375415728778}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3809786578533389551}
@@ -1312,6 +1316,9 @@ GameObject:
   - component: {fileID: 3809786578533389551}
   - component: {fileID: 600805747667004117}
   - component: {fileID: 5075411683688916880}
+  - component: {fileID: 4035260176933657408}
+  - component: {fileID: 4035260176933657410}
+  - component: {fileID: 4035260176933657409}
   m_Layer: 0
   m_Name: SkullHead
   m_TagString: Untagged
@@ -1319,6 +1326,49 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4035260176933657408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035260176933657407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093530b966eeb1643bed135785a9a7a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextForLookAt: {fileID: 2065151224}
+  DistanceToEnableText: 1
+--- !u!64 &4035260176933657409
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035260176933657407}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 588068270266094492, guid: 7cdd5d64108021b48bf40044b70106ee, type: 3}
+--- !u!114 &4035260176933657410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035260176933657407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc55b0e35c461db489e16fc2892a6ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeltaSize: 15
+  TextObject: {fileID: 2065151224}
+  SmoothRotationValue: 0.5
 --- !u!23 &5075411683688916880
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1408,6 +1458,9 @@ GameObject:
   - component: {fileID: 8269937425557581711}
   - component: {fileID: 8457234892775443101}
   - component: {fileID: 5962855537247837485}
+  - component: {fileID: 7335848830574911072}
+  - component: {fileID: 7335848830574911074}
+  - component: {fileID: 7335848830574911073}
   m_Layer: 0
   m_Name: SkullBottom
   m_TagString: Untagged
@@ -1415,6 +1468,49 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7335848830574911072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335848830574911071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093530b966eeb1643bed135785a9a7a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextForLookAt: {fileID: 362651827}
+  DistanceToEnableText: 1
+--- !u!64 &7335848830574911073
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335848830574911071}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5661813741101834543, guid: 7cdd5d64108021b48bf40044b70106ee, type: 3}
+--- !u!114 &7335848830574911074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335848830574911071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc55b0e35c461db489e16fc2892a6ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeltaSize: 15
+  TextObject: {fileID: 362651827}
+  SmoothRotationValue: 0.5
 --- !u!4 &8269937425557581711
 Transform:
   m_ObjectHideFlags: 0
