@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,22 +13,26 @@ public class SkeletButton : MonoBehaviour
     private float DeltaSize;
     [SerializeField]
     private float MinSize;
+
+    [SerializeField]
     private float MaxSize;
 
     [SerializeField]
     private GameObject TextObject;
     [SerializeField]
     private float SmoothRotationValue;
+    [SerializeField]
+    private float TimeToRotate;
 
     bool IsButtonPressed = false;
 
     bool ObjectIsScaledUp;
     bool ObjectIsScaledDown;
+    bool ObjectIsScalingUp;
 
-    float currentX;
-    float currentY;
-    float currentZ;
-
+    float CurrentX;
+    float CurrentY;
+    float CurrentZ;
 
     private void Start() 
     {
@@ -36,45 +41,46 @@ public class SkeletButton : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        currentX = transform.localScale.x;
-        currentY = transform.localScale.y;
-        currentZ = transform.localScale.z;
+        CurrentX = transform.localScale.x;
+        CurrentY = transform.localScale.y;
+        CurrentZ = transform.localScale.z;
 
         ChangeScale();
+        RotateTowards();
     }
 
     private void RotateTowards()
     {
-        float singleStep = SmoothRotationValue * Time.deltaTime;
-        Vector3 newDirection = Vector3.RotateTowards(RootObject.transform.forward, -Camera.main.transform.forward, singleStep, 0.0f);
-        RootObject.transform.rotation = Quaternion.LookRotation(newDirection);
+        if(ObjectIsScalingUp)
+        {
+            float singleStep = SmoothRotationValue * Time.deltaTime;
+            Vector3 newDirection = Vector3.RotateTowards(RootObject.transform.forward, -Camera.main.transform.forward, singleStep, 0.0f);
+            RootObject.transform.rotation = Quaternion.LookRotation(newDirection);
+        }
     }
 
     public void ChangeScale()
     {
-        if(currentX < MinSize && currentY < MinSize && currentZ < MinSize && IsButtonPressed)
+        if(CurrentX < MinSize && CurrentY < MinSize && CurrentZ < MinSize)
         {
             transform.localScale = new Vector3(MinSize, MinSize, MinSize);
             ObjectIsScaledDown = true;
             ObjectIsScaledUp = false;
-            IsButtonPressed = false;
-            return;
+            ObjectIsScalingUp = false;
         }
 
-        if (currentX > MaxSize && currentY > MaxSize && currentZ > MaxSize && IsButtonPressed)
+        if (CurrentX > MaxSize && CurrentY > MaxSize && CurrentZ > MaxSize)
         {
             transform.localScale = new Vector3(MaxSize, MaxSize, MaxSize);
             ObjectIsScaledDown = false;
             ObjectIsScaledUp = true;
-            IsButtonPressed = false;
-            return;
         }
 
         if(IsButtonPressed && !ObjectIsScaledUp)
         {
             ScaleUp();
-            RotateTowards();
             ObjectIsScaledDown = false;
+            ObjectIsScalingUp = true;
         }
         if(!IsButtonPressed && !ObjectIsScaledDown)
         {
@@ -84,38 +90,25 @@ public class SkeletButton : MonoBehaviour
     }
 
     public void ScaleUp()
-        {
-            transform.localScale = new Vector3(currentX + DeltaSize, currentY + DeltaSize, currentZ + DeltaSize);
-        }
+    {
+        transform.localScale = new Vector3(CurrentX + DeltaSize, CurrentY + DeltaSize, CurrentZ + DeltaSize);
+    }
     public void ScaleDown()
-        {
-            transform.localScale = new Vector3(currentX - DeltaSize, currentY - DeltaSize, currentZ - DeltaSize);
-        }
+    {
+            transform.localScale = new Vector3(CurrentX - DeltaSize, CurrentY - DeltaSize, CurrentZ - DeltaSize);
+    }
 
     private void OnMouseDown() 
     {   
         IsButtonPressed = !IsButtonPressed;
 
-        // comment for Android touch input
+        // //comment for Android touch input
         // Touch touch;
         // touch = Input.GetTouch(0);
 
         // int fingerId = touch.fingerId;
 
-        // if(Input.touchCount == 1 && !EventSystem.current.IsPointerOverGameObject(fingerId) && !IsSwitched)
-        // {
-        //     transform.localScale = new Vector3(BaseLocalScale.x + DeltaSize, BaseLocalScale.y + DeltaSize, BaseLocalScale.z + DeltaSize);
-        //     TextObject.SetActive(true);
-        //     IsSwitched = true;
-        //     return;
-        // }
-        
-        // if(Input.touchCount == 1 && !EventSystem.current.IsPointerOverGameObject(fingerId) && IsSwitched)
-        // {
-        //     transform.localScale = new Vector3(BaseLocalScale.x - DeltaSize, BaseLocalScale.y - DeltaSize, BaseLocalScale.z - DeltaSize);
-        //     TextObject.SetActive(false);
-        //     IsSwitched = false;
-        //     return;
-        // }
+        // if(Input.touchCount == 1 && !EventSystem.current.IsPointerOverGameObject(fingerId))
+        //     IsButtonPressed = !IsButtonPressed;
     }
 }
