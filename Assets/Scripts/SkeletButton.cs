@@ -8,6 +8,10 @@ public class SkeletButton : MonoBehaviour
 {
     [SerializeField]
     private GameObject RootObject;
+    [SerializeField]
+    private GameObject ChildObject;
+    [SerializeField]
+    private GameObject ModelRotationObject;
 
     [SerializeField]
     private float DeltaSize;
@@ -41,21 +45,23 @@ public class SkeletButton : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        CurrentX = transform.localScale.x;
-        CurrentY = transform.localScale.y;
-        CurrentZ = transform.localScale.z;
+        CurrentX = ModelRotationObject.transform.localScale.x;
+        CurrentY = ModelRotationObject.transform.localScale.y;
+        CurrentZ = ModelRotationObject.transform.localScale.z;
 
         ChangeScale();
         RotateTowards();
     }
 
+    Vector3 Rotation = new Vector3();
     private void RotateTowards()
     {
         if(ObjectIsScalingUp)
         {
             float singleStep = SmoothRotationValue * Time.deltaTime;
-            Vector3 newDirection = Vector3.RotateTowards(RootObject.transform.forward, -Camera.main.transform.forward, singleStep, 0.0f);
-            RootObject.transform.rotation = Quaternion.LookRotation(newDirection);
+            Vector3 newDirection = Vector3.RotateTowards(Rotation, -Camera.main.transform.forward, singleStep, 0.0f);
+            RootObject.transform.rotation = Quaternion.FromToRotation(ModelRotationObject.transform.forward, -Camera.main.transform.forward) * RootObject.transform.rotation;
+            //RootObject.transform.rotation = Quaternion.LookRotation(newDirection);
         }
     }
 
@@ -63,7 +69,7 @@ public class SkeletButton : MonoBehaviour
     {
         if(CurrentX < MinSize && CurrentY < MinSize && CurrentZ < MinSize)
         {
-            transform.localScale = new Vector3(MinSize, MinSize, MinSize);
+            ModelRotationObject.transform.localScale = new Vector3(MinSize, MinSize, MinSize);
             ObjectIsScaledDown = true;
             ObjectIsScaledUp = false;
             ObjectIsScalingUp = false;
@@ -71,7 +77,7 @@ public class SkeletButton : MonoBehaviour
 
         if (CurrentX > MaxSize && CurrentY > MaxSize && CurrentZ > MaxSize)
         {
-            transform.localScale = new Vector3(MaxSize, MaxSize, MaxSize);
+            ModelRotationObject.transform.localScale = new Vector3(MaxSize, MaxSize, MaxSize);
             ObjectIsScaledDown = false;
             ObjectIsScaledUp = true;
         }
@@ -91,17 +97,18 @@ public class SkeletButton : MonoBehaviour
 
     public void ScaleUp()
     {
-        transform.localScale = new Vector3(CurrentX + DeltaSize, CurrentY + DeltaSize, CurrentZ + DeltaSize);
+        ModelRotationObject.transform.localScale = new Vector3(CurrentX + DeltaSize, CurrentY + DeltaSize, CurrentZ + DeltaSize);
     }
     public void ScaleDown()
     {
-            transform.localScale = new Vector3(CurrentX - DeltaSize, CurrentY - DeltaSize, CurrentZ - DeltaSize);
+        ModelRotationObject.transform.localScale = new Vector3(CurrentX - DeltaSize, CurrentY - DeltaSize, CurrentZ - DeltaSize);
     }
 
     private void OnMouseDown() 
     {   
         IsButtonPressed = !IsButtonPressed;
 
+        Rotation = ModelRotationObject.transform.forward;
         // //comment for Android touch input
         // Touch touch;
         // touch = Input.GetTouch(0);
