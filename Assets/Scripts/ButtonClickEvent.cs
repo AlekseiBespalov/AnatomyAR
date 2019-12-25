@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class ButtonClickEvent : MonoBehaviour
 {
@@ -16,6 +17,14 @@ public class ButtonClickEvent : MonoBehaviour
     private void OnMouseDown()
     {
         Event.Invoke();
+        
+        // Touch touch;
+        // touch = Input.GetTouch(0);
+
+        // int fingerId = touch.fingerId;
+
+        // if(Input.touchCount == 1 && !EventSystem.current.IsPointerOverGameObject(fingerId))
+        //     Event.Invoke();
     }
 
     public void Click()
