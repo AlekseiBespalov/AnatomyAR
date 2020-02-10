@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
+using Anatomy.Scripts.ARCoreScripts.ManipulationSystem;
+using System;
 
 namespace Michsky.UI.ModernUIPack
 {
@@ -16,6 +18,8 @@ namespace Michsky.UI.ModernUIPack
         public Transform itemParent;
         public GameObject itemObject;
         public GameObject scrollbar;
+        public string NameWhenUnselected;
+        public Sprite IconWhenUnselected;
         private VerticalLayoutGroup itemList;
 
         [Header("SETTINGS")]
@@ -35,6 +39,7 @@ namespace Michsky.UI.ModernUIPack
         private Animator dropdownAnimator;
         private TextMeshProUGUI setItemText;
         private Image setItemImage;
+        private ObjectManipulator _objectManipulator;
 
         Sprite imageHelper;
         string textHelper;
@@ -53,10 +58,14 @@ namespace Michsky.UI.ModernUIPack
             public string itemName = "Dropdown Item";
             public Sprite itemIcon;
             public UnityEvent OnItemSelection;
+            public UnityEvent OnPrefabSelection;
         }
 
         void Start()
         {
+            _objectManipulator = (ObjectManipulator)FindObjectOfType(typeof(ObjectManipulator));
+            _objectManipulator.ObjectSpawned += this.OnObjectSpawned;
+
             dropdownAnimator = this.GetComponent<Animator>();
             itemList = itemParent.GetComponent<VerticalLayoutGroup>();
 
@@ -78,6 +87,7 @@ namespace Michsky.UI.ModernUIPack
                 Button itemButton;
                 itemButton = go.GetComponent<Button>();
                 itemButton.onClick.AddListener(dropdownItems[i].OnItemSelection.Invoke);
+                itemButton.onClick.AddListener(dropdownItems[i].OnPrefabSelection.Invoke);
                 itemButton.onClick.AddListener(Animate);
 
                 if (invokeAtStart == true)
@@ -86,8 +96,8 @@ namespace Michsky.UI.ModernUIPack
                 }
             }
 
-            selectedText.text = dropdownItems[selectedItemIndex].itemName;
-            selectedImage.sprite = dropdownItems[selectedItemIndex].itemIcon;
+            selectedText.text = NameWhenUnselected;
+            selectedImage.sprite = IconWhenUnselected;
 
             if (enableScrollbar == true)
             {
@@ -113,6 +123,17 @@ namespace Michsky.UI.ModernUIPack
             selectedText.text = dropdownItems[itemIndex].itemName;
             selectedItemIndex = itemIndex;
             // dropdownItems[itemIndex].OnItemSelection.Invoke();
+        }
+
+        public void SelectPrefabByButton(int prefabIndex)
+        {
+            _objectManipulator.SelectedPrefab = prefabIndex;
+        }
+
+        public void OnObjectSpawned(GameObject spawnedObject)
+        {
+            selectedText.text = NameWhenUnselected;
+            selectedImage.sprite = IconWhenUnselected;
         }
 
         public void Animate()

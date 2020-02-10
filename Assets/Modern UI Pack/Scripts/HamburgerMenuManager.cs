@@ -29,12 +29,12 @@ namespace Michsky.UI.ModernUIPack
                 isOpen = true;
             }
 
-            else
-            {
-                menuAnimator.Play("Minimize");
-                animatedButton.Play("HTE Hamburger");
-                isOpen = false;
-            }
+            //else
+            //{
+            //    menuAnimator.Play("Minimize");
+            //    animatedButton.Play("HTE Hamburger");
+            //    isOpen = false;
+            //}
         }
 
         public void Animate()

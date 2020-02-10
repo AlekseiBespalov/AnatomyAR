@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="CloudServiceManager.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ namespace GoogleARCoreInternal.CrossPlatform
                 {
                     s_Instance = new CloudServiceManager();
                     LifecycleManager.Instance.EarlyUpdate += s_Instance._OnEarlyUpdate;
+                    LifecycleManager.Instance.OnResetInstance += _ResetInstance;
                 }
 
                 return s_Instance;
@@ -251,6 +252,11 @@ namespace GoogleARCoreInternal.CrossPlatform
                 Debug.LogWarning("Didn't find pending operation for cloudAnchorId: " +
                     cloudAnchorId);
             }
+        }
+
+        private static void _ResetInstance()
+        {
+            s_Instance = null;
         }
 
         private void _OnEarlyUpdate()
