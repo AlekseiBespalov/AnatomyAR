@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="ARCoreSessionConfig.cs" company="Google">
 //
-// Copyright 2017 Google LLC. All Rights Reserved.
+// Copyright 2017 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -82,11 +82,10 @@ namespace GoogleARCore
         [Header("Cloud Anchors")]
 
         /// <summary>
-        /// Chooses which Cloud Anchors mode will be used in ARCore session.
+        /// Toggles whether the Cloud Anchors are enabled.
         /// </summary>
-        [Tooltip("Chooses which Cloud Anchors mode will be used in ARCore session.")]
-        [FormerlySerializedAs("EnableCloudAnchor")]
-        public CloudAnchorMode CloudAnchorMode = CloudAnchorMode.Disabled;
+        [Tooltip("Toggles whether the Cloud Anchors are enabled.")]
+        public bool EnableCloudAnchor = false;
 
         [Header("Augmented Images")]
 
@@ -171,27 +170,6 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether Cloud Anchors are enabled.
-        /// </summary>
-        /// <value><c>true</c> if enable Cloud Anchors; otherwise, <c>false</c>.</value>
-        /// @deprecated Please use ARCoreSessionConfig.CloudAnchorMode instead.
-        [System.Obsolete(
-            "This field has been replaced by ARCoreSessionConfig.CloudAnchorMode. See " +
-            "https://github.com/google-ar/arcore-unity-sdk/releases/tag/v1.15.0")]
-        public bool EnableCloudAnchor
-        {
-            get
-            {
-                return CloudAnchorMode != CloudAnchorMode.Disabled;
-            }
-
-            set
-            {
-                CloudAnchorMode = value ? CloudAnchorMode.Enabled : CloudAnchorMode.Disabled;
-            }
-        }
-
-        /// <summary>
         /// ValueType check if two SessionConfig objects are equal.
         /// </summary>
         /// <param name="other">The other SessionConfig.</param>
@@ -208,7 +186,7 @@ namespace GoogleARCore
             if (MatchCameraFramerate != otherConfig.MatchCameraFramerate ||
                 PlaneFindingMode != otherConfig.PlaneFindingMode ||
                 LightEstimationMode != otherConfig.LightEstimationMode ||
-                CloudAnchorMode != otherConfig.CloudAnchorMode ||
+                EnableCloudAnchor != otherConfig.EnableCloudAnchor ||
                 AugmentedImageDatabase != otherConfig.AugmentedImageDatabase ||
                 CameraFocusMode != otherConfig.CameraFocusMode ||
                 AugmentedFaceMode != otherConfig.AugmentedFaceMode)
@@ -237,7 +215,7 @@ namespace GoogleARCore
             MatchCameraFramerate = other.MatchCameraFramerate;
             PlaneFindingMode = other.PlaneFindingMode;
             LightEstimationMode = other.LightEstimationMode;
-            CloudAnchorMode = other.CloudAnchorMode;
+            EnableCloudAnchor = other.EnableCloudAnchor;
             AugmentedImageDatabase = other.AugmentedImageDatabase;
             CameraFocusMode = other.CameraFocusMode;
             AugmentedFaceMode = other.AugmentedFaceMode;
@@ -250,7 +228,7 @@ namespace GoogleARCore
         {
             if ((LightEstimationMode == LightEstimationMode.EnvironmentalHDRWithoutReflections ||
                 LightEstimationMode == LightEstimationMode.EnvironmentalHDRWithReflections) &&
-                AugmentedFaceMode == AugmentedFaceMode.Mesh)
+                AugmentedFaceMode != AugmentedFaceMode.Disabled)
             {
                 Debug.LogErrorFormat("LightEstimationMode.{0} is incompatible with " +
                     "AugmentedFaceMode.{1}, please use other LightEstimationMode or disable " +

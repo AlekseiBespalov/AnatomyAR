@@ -5,9 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - ManipulationSystem
-  - DetectedPlaneVisualizer
+  - SolarSystem
   - Canvas
-  - DeleteButton
+  - DetectedPlaneVisualizer
   layers:
   - Default
   - TransparentFX

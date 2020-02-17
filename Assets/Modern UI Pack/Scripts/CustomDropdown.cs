@@ -1,11 +1,9 @@
-﻿using System.Collections;
+﻿using Anatomy.Scripts.ARCoreScripts.ManipulationSystem;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
 using TMPro;
-using Anatomy.Scripts.ARCoreScripts.ManipulationSystem;
-using System;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Michsky.UI.ModernUIPack
 {
@@ -63,8 +61,8 @@ namespace Michsky.UI.ModernUIPack
 
         void Start()
         {
-            _objectManipulator = (ObjectManipulator)FindObjectOfType(typeof(ObjectManipulator));
-            _objectManipulator.ObjectSpawned += this.OnObjectSpawned;
+            //_objectManipulator = (ObjectManipulator)FindObjectOfType(typeof(ObjectManipulator));
+            //_objectManipulator.ObjectSpawned += this.OnObjectSpawned;
 
             dropdownAnimator = this.GetComponent<Animator>();
             itemList = itemParent.GetComponent<VerticalLayoutGroup>();

@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="ARCoreAndroidLifecycleManager.cs" company="Google">
 //
-// Copyright 2018 Google LLC. All Rights Reserved.
+// Copyright 2018 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,7 +33,6 @@ namespace GoogleARCoreInternal
     using AndroidImport = System.Runtime.InteropServices.DllImportAttribute;
     using IOSImport = GoogleARCoreInternal.DllImportNoop;
 #endif
-
 
     internal class ARCoreAndroidLifecycleManager : ILifecycleManager
     {
@@ -392,15 +391,15 @@ namespace GoogleARCoreInternal
 
             IntPtr frameHandle = IntPtr.Zero;
             ExternApi.ArPresto_getFrame(ref frameHandle);
+
+            int backgroundTextureId = ExternApi.ArCoreUnity_getBackgroundTextureId();
+
             if (frameHandle == IntPtr.Zero)
             {
                 // This prevents using a texture that has not been filled out by ARCore.
                 return;
             }
-
-            int backgroundTextureId = ExternApi.ArCoreUnity_getBackgroundTextureId();
-
-            if (backgroundTextureId == -1)
+            else if (backgroundTextureId == -1)
             {
                 return;
             }
