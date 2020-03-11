@@ -43,12 +43,10 @@ namespace Anatomy.Scripts.ARCoreScripts.ManipulationSystem
         /// </summary>
         public GameObject ManipulatorPrefab;
 
-        //TODO: Change GameObject to abstraction with other properties
-        // [SerializeField]
-        // private List<AstrocomObject> ObjectsToSpawn;
-
         [SerializeField]
         private List<GameObject> ObjectsToSpawn;
+
+        public List<GameObject> SpawnedObjects { get; }
 
         public int SelectedPrefab { get; set; } = -1;
 
@@ -129,7 +127,6 @@ namespace Anatomy.Scripts.ARCoreScripts.ManipulationSystem
                     {
                         // Instantiate game object at the hit pose.
                         var gameObject = Instantiate(ObjectsToSpawn[SelectedPrefab], hit.Pose.position, hit.Pose.rotation);
-                        AnatomyObjectManager.Instance.OnObjectSpawned(gameObject);
 
                         // Instantiate manipulator.
                         var manipulator =
@@ -148,6 +145,8 @@ namespace Anatomy.Scripts.ARCoreScripts.ManipulationSystem
 
                         // Select the placed object.
                         manipulator.GetComponent<Manipulator>().Select();
+
+                        AnatomyObjectManager.Instance.OnObjectSpawned(manipulator);
 
                         SelectedPrefab = -1;
                         CurrentCountOfObjects += 1;

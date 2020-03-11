@@ -1,20 +1,37 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 /// Manipulate standart UI which control objects and
-/// can instantiate specified UI for each object
+/// can instantiate specified UI for each object.
 /// </summary>
 public class UIManager : MonoBehaviour
 {
+    /// <summary>
+    /// Canvas component where individual UI of each object will be created.
+    /// </summary>
     private Canvas MainCanvas;
 
+    /// <summary>
+    /// Standart UI for all anatomy objects across application.
+    /// </summary>
     [SerializeField]
     private GameObject StandartUI;
+
+    /// <summary>
+    /// Remove button separated from other interface elements.
+    /// </summary>
     [SerializeField]
     private GameObject RemoveButton;
 
+    /// <summary>
+    /// Anatomy object manager to sign up for events with anatomy objects.
+    /// </summary>
     private AnatomyObjectManager anatomyObjectManager;
 
+    /// <summary>
+    /// The Unity Start() method.
+    /// </summary>
     void Start()
     {
         MainCanvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
@@ -22,17 +39,49 @@ public class UIManager : MonoBehaviour
         
         if(anatomyObjectManager != null)
         {
+            anatomyObjectManager.AnatomyObjectSpawned += OnAnatomyObjectSpawned;
             anatomyObjectManager.AnatomyObjectSelected += OnAnatomyObjectSelected;
             anatomyObjectManager.AnatomyObjectDeselected += OnObjectDeselected;
             anatomyObjectManager.AnatomyObjectRemoved += OnObjectRemoved;
         }
         else
-            Debug.LogWarning("Anatomy object manager not found in scene");
+        {
+            Debug.LogError("Anatomy object manager not found in scene.");
+        }
 
-        StandartUI.SetActive(false);
-        RemoveButton.SetActive(false);
+        if(StandartUI != null)
+        {
+            StandartUI.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("StandartUI not found in UIManager.");
+        }
+
+        if(StandartUI != null)
+        {
+            RemoveButton.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("RemoveButton not found in UIManager.");
+        }
     }
 
+    /// <summary>
+    /// (NOT IMPLEMENTED) Changes interface when anatomy object spawned.
+    /// FIXME: Implement interface reaction to new spawned object.
+    /// </summary>
+    /// <param name="anatomySpawnedObject">Spawned by ObjectManipulator anatomy object.</param>
+    public void OnAnatomyObjectSpawned(AnatomyObject anatomySpawnedObject)
+    {
+        Debug.LogError("Anatomy spawned event is not implemented in UI manager.");
+    }
+
+    /// <summary>
+    /// Changes interface when anatomy object selected.
+    /// </summary>
+    /// <param name="anatomySelectedObject">Selected by SelectingManipulator anatomy object.</param>
     public void OnAnatomyObjectSelected(AnatomyObject anatomySelectedObject)
     {
         RemoveButton.SetActive(true);
@@ -48,34 +97,40 @@ public class UIManager : MonoBehaviour
             tempInstantiatedUi.SetActive(true);
             anatomySelectedObject.InstantiatedUi = tempInstantiatedUi;
         }
-        
         else if(instantiatedUi != null && onlyIndividualUi)
         {
             anatomySelectedObject.InstantiatedUi.SetActive(true);
             StandartUI.SetActive(false);
-        }
-            
+        }    
         else if(instantiatedUi == null && !onlyIndividualUi)
+        {
             StandartUI.SetActive(true);
-
+        }
         else if(instantiatedUi != null && !onlyIndividualUi)
         {
             anatomySelectedObject.InstantiatedUi.SetActive(true);
             StandartUI.SetActive(true);
         }
-
         else if(instantiatedUi == null && onlyIndividualUi)
+        {
             StandartUI.SetActive(false);
+        }
     }
 
-    //FIXME: When object deselected deactivate remove button (but it's doesn't work as suppose)
+    /// <summary>
+    /// Changes interface when anatomy object deselected.
+    /// FIXME: When object deselected deactivate remove button (but it's doesn't work as supposed).
+    /// </summary>
+    /// <param name="anatomyDeselectedObject">Deselected by SelectingManipulator anatomy object.</param>
+   
     public void OnObjectDeselected(AnatomyObject anatomyDeselectedObject)
     {
-        // RemoveButton.SetActive(false)
+        RemoveButton.SetActive(false);
 
         if(anatomyDeselectedObject.InstantiatedUi == null)
+        { 
             StandartUI.SetActive(false);
-
+        }
         else
         {
             anatomyDeselectedObject.InstantiatedUi.SetActive(false);
@@ -83,13 +138,18 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changes interface when anatomy object removed.
+    /// </summary>
+    /// <param name="anatomyRemovedObject">Removed by ManipulationSystem anatomy object.</param>
     public void OnObjectRemoved(AnatomyObject anatomyRemovedObject)
     {
         RemoveButton.SetActive(false);
         
         if(anatomyRemovedObject.InstantiatedUi == null)
+        {
             StandartUI.SetActive(false);
-
+        }
         else
         {
             anatomyRemovedObject.InstantiatedUi.SetActive(false);

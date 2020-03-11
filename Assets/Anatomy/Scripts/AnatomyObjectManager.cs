@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 /// <summary>
 /// AnatomyObjectManager allows developers to get events (select, deselect,
@@ -11,6 +13,9 @@ public class AnatomyObjectManager : MonoBehaviour
 {
     private static AnatomyObjectManager s_Instance = null;
 
+    public delegate void AnatomyObjectSpawnedHandler(AnatomyObject spawnedAnatomyObject);
+    public event AnatomyObjectSpawnedHandler AnatomyObjectSpawned;
+
     public delegate void AnatomyObjectSelectedHandler(AnatomyObject selectedAnatomyObject);
     public event AnatomyObjectSelectedHandler AnatomyObjectSelected;
 
@@ -20,28 +25,31 @@ public class AnatomyObjectManager : MonoBehaviour
     public delegate void AnatomyObjectRemovedHandler(AnatomyObject removedAnatomyObject);
     public event AnatomyObjectRemovedHandler AnatomyObjectRemoved;
 
+
+    public List<AnatomyObject> SpawnedAnatomyObjects { get; } = new List<AnatomyObject>();
+
     /// <summary>
     /// Gets the AnatomyObjectManager instance.
     /// </summary>
     public static AnatomyObjectManager Instance
     {
         get
+        {
+            if (s_Instance == null)
             {
-                if (s_Instance == null)
+                var objectManagers = FindObjectsOfType<AnatomyObjectManager>();
+                if (objectManagers.Length > 0)
                 {
-                    var objectManagers = FindObjectsOfType<AnatomyObjectManager>();
-                    if (objectManagers.Length > 0)
-                    {
-                        s_Instance = objectManagers[0];
-                    }
-                    else
-                    {
-                        Debug.LogError("No instance of AnatomyObjectManager exists in the scene.");
-                    }
+                    s_Instance = objectManagers[0];
                 }
-
-                return s_Instance;
+                else
+                {
+                    Debug.LogError("No instance of AnatomyObjectManager exists in the scene.");
+                }
             }
+
+            return s_Instance;
+        }
     }
 
 
@@ -51,13 +59,14 @@ public class AnatomyObjectManager : MonoBehaviour
     /// <param name="spawnedObject">Spawned object with AnatomyObject script in it.</param>
     public void OnObjectSpawned(GameObject spawnedObject)
     {
+        ShowAllSpawnedObjects();
         if(spawnedObject)
         {
             AnatomyObject anatomySpawnedObject = spawnedObject.GetComponentInChildren<AnatomyObject>();
-        
             if(anatomySpawnedObject != null)
             {
-                AnatomyObjectSelected(anatomySpawnedObject);
+                SpawnedAnatomyObjects.Add(anatomySpawnedObject);
+                AnatomyObjectSpawned(anatomySpawnedObject);
             }
             else
             {
@@ -79,7 +88,6 @@ public class AnatomyObjectManager : MonoBehaviour
         if(selectedObject != null)
         {
             AnatomyObject anatomySelectedObject = selectedObject.GetComponentInChildren<AnatomyObject>();
-        
             if(anatomySelectedObject != null)
             {
                 AnatomyObjectSelected(anatomySelectedObject);
@@ -127,11 +135,11 @@ public class AnatomyObjectManager : MonoBehaviour
     {
         if (removedObject != null)
         {
-            AnatomyObject anatomyRemovedObject = removedObject.GetComponentInChildren<AnatomyObject>();
-            
+            AnatomyObject anatomyRemovedObject = removedObject.GetComponentInChildren<AnatomyObject>(); 
             if(anatomyRemovedObject != null)
             {
                 AnatomyObjectRemoved(anatomyRemovedObject);
+                SpawnedAnatomyObjects.Remove(SpawnedAnatomyObjects.SingleOrDefault(a => a == anatomyRemovedObject));
             }
             else
             {
@@ -141,6 +149,15 @@ public class AnatomyObjectManager : MonoBehaviour
         else
         {
             Debug.LogError("Removed object is null.");
+        }
+        ShowAllSpawnedObjects();
+    }
+
+    public void ShowAllSpawnedObjects()
+    {
+        foreach(AnatomyObject anatomyObject in SpawnedAnatomyObjects)
+        {
+            Debug.Log($"{anatomyObject.ObjectName} in instantiated list.");
         }
     }
 }

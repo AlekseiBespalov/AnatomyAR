@@ -42,11 +42,14 @@ namespace Anatomy.Scripts.ARCoreScripts.Common
         /// </summary>
         private List<DetectedPlane> m_NewPlanes = new List<DetectedPlane>();
 
+        private List<GameObject> AllDetectedPlanes = new List<GameObject>();
+
         private ObjectManipulator _objectManipulator;
 
         private void Start()
         {
             _objectManipulator = GameObject.FindObjectOfType<ObjectManipulator>();
+
         }
 
         /// <summary>
@@ -57,8 +60,6 @@ namespace Anatomy.Scripts.ARCoreScripts.Common
             // Check that motion tracking is tracking.
             if (Session.Status != SessionStatus.Tracking)
                 return;
-
-            CheckObjectsCountForTogglePlane();
 
             // Iterate over planes found in this frame and instantiate corresponding GameObjects to
             // visualize them.
@@ -71,12 +72,16 @@ namespace Anatomy.Scripts.ARCoreScripts.Common
                 GameObject planeObject =
                     Instantiate(DetectedPlanePrefab, Vector3.zero, Quaternion.identity, transform);
                 planeObject.GetComponent<DetectedPlaneVisualizer>().Initialize(m_NewPlanes[i]);
+
+                AllDetectedPlanes.Add(planeObject);
             }
+
+            CheckObjectsCountForTogglePlane();
         }
 
         public void ToggleAllPlanes(bool renderPlaneState)
         {
-           foreach(GameObject plane in GameObject.FindGameObjectsWithTag("DetectedPlaneVisualizer"))
+           foreach(GameObject plane in AllDetectedPlanes)
            {
                if(plane != null)
                {
