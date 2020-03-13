@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6535586522172685774}
   - component: {fileID: 6151622395342056469}
   - component: {fileID: 4701801328405062880}
+  - component: {fileID: 944407030204124844}
   m_Layer: 0
   m_Name: NasalBone
   m_TagString: Untagged
@@ -98,3 +99,17 @@ MonoBehaviour:
   _multipleObjects: 0
   _unscalable: 0
   _unmovable: 0
+--- !u!64 &944407030204124844
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089452305255261146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -983588218515315895, guid: 139643b919587704981cc411a349ab69, type: 3}

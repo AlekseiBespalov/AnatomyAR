@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3604389074643949610}
   - component: {fileID: 8887103483903046291}
   - component: {fileID: 6077502304724054375}
+  - component: {fileID: -2338866548085437238}
   m_Layer: 0
   m_Name: Vomer
   m_TagString: Untagged
@@ -98,3 +99,17 @@ MonoBehaviour:
   _multipleObjects: 0
   _unscalable: 0
   _unmovable: 0
+--- !u!64 &-2338866548085437238
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136122334720944125}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2768035083742181739, guid: 139643b919587704981cc411a349ab69, type: 3}

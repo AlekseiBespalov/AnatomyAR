@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2100632996468062294}
   - component: {fileID: 5899610376705612462}
   - component: {fileID: 4795553917846170926}
+  - component: {fileID: 6002558784057789294}
+  - component: {fileID: 9181239682800319181}
   m_Layer: 0
   m_Name: UlnaBoneL
   m_TagString: Untagged
@@ -79,3 +81,35 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6002558784057789294
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632360924379914696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1010431185403756103, guid: 691988346746e7e40933151b720aca23, type: 3}
+--- !u!114 &9181239682800319181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632360924379914696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f016e4d302c4c45a92416a6e259ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectName: 
+  _individualUiObject: {fileID: 0}
+  _onlyIndividualUi: 0
+  _multipleObjects: 0
+  _unscalable: 0
+  _unmovable: 0

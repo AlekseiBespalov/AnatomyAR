@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2252265867747869465}
   - component: {fileID: 4665624922381492246}
   - component: {fileID: 2034271706558686260}
+  - component: {fileID: 1541357640006681938}
+  - component: {fileID: 7997073242881803658}
   m_Layer: 0
   m_Name: PhalanxesL
   m_TagString: Untagged
@@ -79,3 +81,35 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1541357640006681938
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3634533018543944151}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4014692659132020010, guid: 691988346746e7e40933151b720aca23, type: 3}
+--- !u!114 &7997073242881803658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3634533018543944151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f016e4d302c4c45a92416a6e259ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectName: 
+  _individualUiObject: {fileID: 0}
+  _onlyIndividualUi: 0
+  _multipleObjects: 0
+  _unscalable: 0
+  _unmovable: 0

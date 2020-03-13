@@ -1,6 +1,8 @@
 ﻿using System;
 using Anatomy.Scripts.ARCoreScripts.ManipulationSystem;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 /// <summary>
 /// Describe object which can be spawned and manipulated in Anatomy scenes
@@ -20,6 +22,11 @@ public class AnatomyObject : MonoBehaviour
     public string ObjectName { get => _objectName; }
     [SerializeField]
     private string _objectName;
+
+    /// <summary>
+    /// Description of anatomy object as TextMeshPro
+    /// </summary>
+    private Text AnatomyObjectDescription;
 
     /// <summary>
     /// Contains GameObject with individual UI for this object
@@ -72,5 +79,48 @@ public class AnatomyObject : MonoBehaviour
             gameObject.transform.parent.GetComponentInChildren<TranslationManipulator>().enabled = false;
         else if(!Unmovable)
             gameObject.transform.parent.GetComponentInChildren<TranslationManipulator>().enabled = true;
+
+        if(gameObject.GetComponent<Text>() != null)
+            AnatomyObjectDescription = gameObject.GetComponent<Text>();
+        else
+            Debug.LogWarning("Description not found in spawned anatomy object.");
+    }
+
+    private void OnMouseDown() {
+
+        GameObject.FindGameObjectWithTag("Canvas")
+                .transform.Find("InfoPanel")
+                .Find("Panel")
+                .transform.Find("Header")
+                .GetComponent<TextMeshProUGUI>().SetText($"{ObjectName}");
+
+        GameObject.FindGameObjectWithTag("Canvas")
+                .transform.Find("InfoPanel")
+                .Find("Panel")
+                .transform.Find("ScrollArea")
+                .transform.Find("TextContainer")
+                .transform.Find("InfoText")
+                .GetComponent<TextMeshProUGUI>().SetText($"{AnatomyObjectDescription.text}");
+
+        // Touch touch;
+        // touch = Input.GetTouch(0);
+        // int pointerId = touch.fingerId;
+
+        // if(Input.touchCount == 1 && !EventSystem.current.IsPointerOverGameObject(pointerId))
+        // {
+        //     GameObject.FindGameObjectWithTag("Canvas")
+        //         .transform.Find("InfoPanel")
+        //         .Find("Panel")
+        //         .transform.Find("Header")
+        //         .GetComponent<TextMeshProUGUI>.SetText($"{ObjectName}");
+
+        //     GameObject.FindGameObjectWithTag("Canvas")
+        //         .transform.Find("InfoPanel")
+        //         .Find("Panel")
+        //         .transform.Find("ScrollArea")
+        //         .transform.Find("TextContainer")
+        //         .transform.Find("InfoText")
+        //         .GetComponent<TextMeshProUGUI>.SetText($"{AnatomyObjectDescription.text}");
+        // }
     }
 }

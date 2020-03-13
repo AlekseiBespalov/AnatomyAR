@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6437549359247329975}
   - component: {fileID: 5786308568679159238}
   - component: {fileID: 2566884446498198084}
+  - component: {fileID: 855345529318289410}
   m_Layer: 0
   m_Name: TemporalBoneR
   m_TagString: Untagged
@@ -98,3 +99,17 @@ MonoBehaviour:
   _multipleObjects: 0
   _unscalable: 0
   _unmovable: 0
+--- !u!64 &855345529318289410
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238343261649142640}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4030573464825800490, guid: 139643b919587704981cc411a349ab69, type: 3}

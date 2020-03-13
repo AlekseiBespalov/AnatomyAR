@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4694226157240627342}
   - component: {fileID: 5937961983748521185}
   - component: {fileID: 4766911473749742089}
+  - component: {fileID: 5591070984400326450}
   m_Layer: 0
   m_Name: SphenoidBoneR
   m_TagString: Untagged
@@ -98,3 +99,17 @@ MonoBehaviour:
   _multipleObjects: 0
   _unscalable: 0
   _unmovable: 0
+--- !u!64 &5591070984400326450
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575637946811388853}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5862285047681851281, guid: 139643b919587704981cc411a349ab69, type: 3}

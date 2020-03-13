@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8306129067604312011}
   - component: {fileID: 294894143287808783}
   - component: {fileID: 7401152314380260302}
+  - component: {fileID: -2007027674946990770}
   m_Layer: 0
   m_Name: FrontalBone
   m_TagString: Untagged
@@ -98,3 +99,17 @@ MonoBehaviour:
   _multipleObjects: 0
   _unscalable: 0
   _unmovable: 0
+--- !u!64 &-2007027674946990770
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6627736816143208872}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8061540986286507860, guid: 139643b919587704981cc411a349ab69, type: 3}
