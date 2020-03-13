@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Astrocom/Scenes/AnatomyMain.unity
+    path: Assets/Anatomy/Scenes/AnatomyMain.unity
     guid: 9f2f4695404a776429026a89f7581293
   m_configObjects: {}
