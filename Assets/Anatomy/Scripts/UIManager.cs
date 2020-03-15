@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -17,6 +18,18 @@ public class UIManager : MonoBehaviour
     /// </summary>
     [SerializeField]
     private GameObject StandartUI;
+
+    /// <summary>
+    /// TextMeshPro component for displaying the name of selected anatomy objects
+    /// </summary>
+    [SerializeField]
+    private TextMeshProUGUI NamePanel;
+
+    /// <summary>
+    /// TextMeshPro component for displaying the description of selected anatomy objects
+    /// </summary>
+    [SerializeField]
+    private TextMeshProUGUI DescriptionPanel;
 
     /// <summary>
     /// Remove button separated from other interface elements.
@@ -85,6 +98,9 @@ public class UIManager : MonoBehaviour
     public void OnAnatomyObjectSelected(AnatomyObject anatomySelectedObject)
     {
         RemoveButton.SetActive(true);
+        StandartUI.SetActive(true);
+
+        SetNameAndDescriptionOfAnatomyObject(anatomySelectedObject);
 
         var individualUiObject = anatomySelectedObject.IndividualUiObject;
         var instantiatedUi = anatomySelectedObject.InstantiatedUi;
@@ -126,6 +142,7 @@ public class UIManager : MonoBehaviour
     public void OnObjectDeselected(AnatomyObject anatomyDeselectedObject)
     {
         RemoveButton.SetActive(false);
+        StandartUI.SetActive(false);
 
         if(anatomyDeselectedObject.InstantiatedUi == null)
         { 
@@ -157,6 +174,12 @@ public class UIManager : MonoBehaviour
             anatomyRemovedObject.InstantiatedUi = null;
             StandartUI.SetActive(false);
         }
+    }
+
+    public void SetNameAndDescriptionOfAnatomyObject(AnatomyObject anatomyObject)
+    {
+        NamePanel.SetText(anatomyObject.ObjectName);
+        DescriptionPanel.SetText(anatomyObject.AnatomyObjectDescription.text);
     }
 
     public void ExitApplication()

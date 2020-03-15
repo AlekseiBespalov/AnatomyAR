@@ -24,9 +24,11 @@ public class AnatomyObject : MonoBehaviour
     private string _objectName;
 
     /// <summary>
-    /// Description of anatomy object as TextMeshPro
+    /// Description of anatomy object as Unity Text component
     /// </summary>
-    private Text AnatomyObjectDescription;
+    public TextMeshProUGUI AnatomyObjectDescription { get => _anatomyObjectDescription; }
+    [SerializeField]
+    private TextMeshProUGUI _anatomyObjectDescription;
 
     /// <summary>
     /// Contains GameObject with individual UI for this object
@@ -70,57 +72,19 @@ public class AnatomyObject : MonoBehaviour
 
     private void Start() 
     {
-        if(Unscalable)
+        if (Unscalable)
             gameObject.transform.parent.GetComponentInChildren<ScaleManipulator>().enabled = false;
-        else if(!Unscalable)
+        else if (!Unscalable)
             gameObject.transform.parent.GetComponentInChildren<ScaleManipulator>().enabled = true;
 
-        if(Unmovable)
+        if (Unmovable)
             gameObject.transform.parent.GetComponentInChildren<TranslationManipulator>().enabled = false;
-        else if(!Unmovable)
+        else if (!Unmovable)
             gameObject.transform.parent.GetComponentInChildren<TranslationManipulator>().enabled = true;
 
-        if(gameObject.GetComponent<Text>() != null)
-            AnatomyObjectDescription = gameObject.GetComponent<Text>();
+        if (gameObject.GetComponentInChildren<TextMeshProUGUI>() != null)
+            _anatomyObjectDescription = gameObject.GetComponentInChildren<TextMeshProUGUI>();
         else
-            Debug.LogWarning("Description not found in spawned anatomy object.");
-    }
-
-    private void OnMouseDown() {
-
-        GameObject.FindGameObjectWithTag("Canvas")
-                .transform.Find("InfoPanel")
-                .Find("Panel")
-                .transform.Find("Header")
-                .GetComponent<TextMeshProUGUI>().SetText($"{ObjectName}");
-
-        GameObject.FindGameObjectWithTag("Canvas")
-                .transform.Find("InfoPanel")
-                .Find("Panel")
-                .transform.Find("ScrollArea")
-                .transform.Find("TextContainer")
-                .transform.Find("InfoText")
-                .GetComponent<TextMeshProUGUI>().SetText($"{AnatomyObjectDescription.text}");
-
-        // Touch touch;
-        // touch = Input.GetTouch(0);
-        // int pointerId = touch.fingerId;
-
-        // if(Input.touchCount == 1 && !EventSystem.current.IsPointerOverGameObject(pointerId))
-        // {
-        //     GameObject.FindGameObjectWithTag("Canvas")
-        //         .transform.Find("InfoPanel")
-        //         .Find("Panel")
-        //         .transform.Find("Header")
-        //         .GetComponent<TextMeshProUGUI>.SetText($"{ObjectName}");
-
-        //     GameObject.FindGameObjectWithTag("Canvas")
-        //         .transform.Find("InfoPanel")
-        //         .Find("Panel")
-        //         .transform.Find("ScrollArea")
-        //         .transform.Find("TextContainer")
-        //         .transform.Find("InfoText")
-        //         .GetComponent<TextMeshProUGUI>.SetText($"{AnatomyObjectDescription.text}");
-        // }
+            Debug.LogError("Description not found in spawned anatomy object.");
     }
 }
