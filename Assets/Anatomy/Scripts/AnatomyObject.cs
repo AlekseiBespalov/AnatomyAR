@@ -82,7 +82,7 @@ public class AnatomyObject : MonoBehaviour
         else if (!Unmovable)
             gameObject.transform.parent.GetComponentInChildren<TranslationManipulator>().enabled = true;
 
-        if (gameObject.GetComponentInChildren<TextMeshProUGUI>() != null)
+        if (_anatomyObjectDescription == null && gameObject.GetComponentInChildren<TextMeshProUGUI>() != null)
             _anatomyObjectDescription = gameObject.GetComponentInChildren<TextMeshProUGUI>();
         else
             Debug.LogError("Description not found in spawned anatomy object.");
