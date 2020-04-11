@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6585370533225884866}
   - component: {fileID: 6476859065637328134}
   - component: {fileID: 6424155441642313312}
+  - component: {fileID: 4320453575176699468}
   m_Layer: 5
   m_Name: ButtonMeat
   m_TagString: Untagged
@@ -69,12 +70,12 @@ MonoBehaviour:
   OffEvents:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 4320453575176699468}
+        m_MethodName: TurnOffAllMeat
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -83,12 +84,12 @@ MonoBehaviour:
   OnEvents:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 4320453575176699468}
+        m_MethodName: TurnOnAllMeat
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -113,6 +114,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4320453575176699468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6372712675611021476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edbe5ae40a011d84eb5a036bf36b2084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6372970908446204374
 GameObject:
   m_ObjectHideFlags: 0
