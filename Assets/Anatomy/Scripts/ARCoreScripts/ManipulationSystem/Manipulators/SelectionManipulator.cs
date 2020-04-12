@@ -22,6 +22,7 @@ namespace Anatomy.Scripts.ARCoreScripts.ManipulationSystem
 {
     using GoogleARCore;
     using UnityEngine;
+    using UnityEngine.EventSystems;
 
     /// <summary>
     /// Controls the selection of an object through Tap gesture.
