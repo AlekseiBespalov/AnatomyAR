@@ -11,7 +11,7 @@ public class MeatToggle : MonoBehaviour
         List<MeshRenderer> meatMesh = new List<MeshRenderer>();
         foreach(GameObject gameObject in meats)
         {
-            meatMesh.Add(gameObject.GetComponent<MeshRenderer>());
+            meatMesh.AddRange(gameObject.GetComponentsInChildren<MeshRenderer>());
         }
 
         foreach(MeshRenderer mesh in meatMesh)
@@ -27,7 +27,7 @@ public class MeatToggle : MonoBehaviour
         List<MeshRenderer> meatMesh = new List<MeshRenderer>();
         foreach(GameObject gameObject in meats)
         {
-            meatMesh.Add(gameObject.GetComponent<MeshRenderer>());
+            meatMesh.AddRange(gameObject.GetComponentsInChildren<MeshRenderer>());
         }
 
         foreach(MeshRenderer mesh in meatMesh)
