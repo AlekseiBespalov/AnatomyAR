@@ -438,7 +438,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Left temporal bone
+  m_text: "\u0412\u0438\u0441\u043E\u0447\u043D\u0430\u044F \u043A\u043E\u0441\u0442\u044C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationName: 
+  translationName: Skeleton/Skull/TemporalBoneName
   FallbackText: Left temporal bone
 --- !u!1 &8397589394457066215
 GameObject:
@@ -608,7 +608,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Left temporal bone description
+  m_text: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u0432\u0438\u0441\u043E\u0447\u043D\u043E\u0439
+    \u043A\u043E\u0441\u0442\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -712,5 +713,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationName: 
+  translationName: Skeleton/Skull/TemporalBoneDiscription
   FallbackText: Left temporal bone description
