@@ -19,9 +19,9 @@ public class AnatomyObject : MonoBehaviour
     /// <summary>
     /// Store name for particular anatomy object if needed
     /// </summary>
-    public string ObjectName { get => _objectName; }
+    public TextMeshProUGUI AnatomyObjectName { get => _anatomyObjectName; }
     [SerializeField]
-    private string _objectName;
+    private TextMeshProUGUI _anatomyObjectName;
 
     /// <summary>
     /// Description of anatomy object as Unity Text component
@@ -82,9 +82,7 @@ public class AnatomyObject : MonoBehaviour
         else if (!Unmovable)
             gameObject.transform.parent.GetComponentInChildren<TranslationManipulator>().enabled = true;
 
-        if (_anatomyObjectDescription == null && gameObject.GetComponentInChildren<TextMeshProUGUI>() != null)
-            _anatomyObjectDescription = gameObject.GetComponentInChildren<TextMeshProUGUI>();
-        else
-            Debug.LogError("Description not found in spawned anatomy object.");
+        if (_anatomyObjectDescription == null || _anatomyObjectName == null)
+            Debug.LogError($"Name or description of anatomy object {Prefab.name} not found");
     }
 }

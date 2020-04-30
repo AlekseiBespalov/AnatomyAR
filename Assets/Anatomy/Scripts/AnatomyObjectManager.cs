@@ -157,7 +157,7 @@ public class AnatomyObjectManager : MonoBehaviour
     {
         foreach(AnatomyObject anatomyObject in SpawnedAnatomyObjects)
         {
-            Debug.Log($"{anatomyObject.ObjectName} in instantiated list.");
+            Debug.Log($"{anatomyObject.AnatomyObjectName} in instantiated list.");
         }
     }
 }

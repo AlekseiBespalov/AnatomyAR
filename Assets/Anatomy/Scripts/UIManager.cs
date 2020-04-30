@@ -100,7 +100,7 @@ public class UIManager : MonoBehaviour
         RemoveButton.SetActive(true);
         StandartUI.SetActive(true);
 
-        SetNameAndDescriptionOfAnatomyObject(anatomySelectedObject);
+        UpdateNameAndDescriptionOfAnatomyObject(anatomySelectedObject);
 
         var individualUiObject = anatomySelectedObject.IndividualUiObject;
         var instantiatedUi = anatomySelectedObject.InstantiatedUi;
@@ -176,9 +176,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetNameAndDescriptionOfAnatomyObject(AnatomyObject anatomyObject)
+    public void UpdateNameAndDescriptionOfAnatomyObject(AnatomyObject anatomyObject)
     {
-        NamePanel.SetText(anatomyObject.ObjectName);
+        NamePanel.SetText(anatomyObject.AnatomyObjectName.text);
         DescriptionPanel.SetText(anatomyObject.AnatomyObjectDescription.text);
     }
 
