@@ -23,6 +23,7 @@ namespace Anatomy.Scripts.ARCoreScripts.ManipulationSystemInternal
     using System;
     using System.Collections.Generic;
     using UnityEngine;
+    using UnityEngine.EventSystems;
 
 #if UNITY_EDITOR
     // Set up touch input propagation while using Instant Preview in the editor.
@@ -91,12 +92,16 @@ namespace Anatomy.Scripts.ARCoreScripts.ManipulationSystemInternal
                 Touch touch = Input.touches[i];
                 if (touch.phase == TouchPhase.Began
                     && !GestureTouchesUtility.IsFingerIdRetained(touch.fingerId)
-                    && !GestureTouchesUtility.IsTouchOffScreenEdge(touch))
+                    && !GestureTouchesUtility.IsTouchOffScreenEdge(touch)
+                    && !EventSystem.current.IsPointerOverGameObject(touch.fingerId))
                 {
                     T gesture = createGestureFunction(touch);
-                    gesture.onStart += OnStart;
-                    gesture.onFinished += OnFinished;
-                    m_Gestures.Add(gesture);
+                    if(gesture != null)
+                    {
+                        gesture.onStart += OnStart;
+                        gesture.onFinished += OnFinished;
+                        m_Gestures.Add(gesture);
+                    }
                 }
             }
         }

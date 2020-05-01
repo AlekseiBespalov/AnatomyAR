@@ -13,7 +13,7 @@ namespace Michsky.UI.Zone
         public GameObject frameCursor;
 
         [Header("INPUT")]
-        public EventSystem eventSystem;
+        public EventSystem _eventSystem;
         public string horizontalAxis = "Horizontal";
         public string verticalAxis = "Vertical";
 
@@ -41,10 +41,12 @@ namespace Michsky.UI.Zone
             FRAME
         }
 
+        #pragma warning disable 114
+
         void Start()
         {
             cursorObj = this.GetComponent<RectTransform>();
-            pointer = new PointerEventData(eventSystem);
+            pointer = new PointerEventData(_eventSystem);
             tooltipPos = new Vector3(tooltipXPosition, tooltipYPosition, 0);
 
             if (cursorType == CursorType.STANDARD)
@@ -135,7 +137,7 @@ namespace Michsky.UI.Zone
             Vector2 screenPos = Camera.main.WorldToScreenPoint(cursorObj.transform.position);
 
             pointer.position = screenPos;
-            eventSystem.RaycastAll(pointer, this.m_RaycastResultCache);
+            _eventSystem.RaycastAll(pointer, this.m_RaycastResultCache);
             RaycastResult raycastResult = FindFirstRaycast(this.m_RaycastResultCache);
             pointer.pointerCurrentRaycast = raycastResult;
             this.ProcessMove(pointer);

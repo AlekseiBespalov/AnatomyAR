@@ -20,22 +20,22 @@ public class AnatomyObject : MonoBehaviour
     /// Store name for particular anatomy object if needed
     /// </summary>
     public TextMeshProUGUI AnatomyObjectName { get => _anatomyObjectName; }
-    [SerializeField]
-    private TextMeshProUGUI _anatomyObjectName;
+
+    [SerializeField]private TextMeshProUGUI _anatomyObjectName;
 
     /// <summary>
     /// Description of anatomy object as Unity Text component
     /// </summary>
     public TextMeshProUGUI AnatomyObjectDescription { get => _anatomyObjectDescription; }
-    [SerializeField]
-    private TextMeshProUGUI _anatomyObjectDescription;
+
+    [SerializeField]private TextMeshProUGUI _anatomyObjectDescription;
 
     /// <summary>
     /// Contains GameObject with individual UI for this object
     /// </summary>
     public GameObject IndividualUiObject { get => _individualUiObject; }
-    [SerializeField]
-    private GameObject _individualUiObject;
+
+    [SerializeField]private GameObject _individualUiObject;
 
     /// <summary>
     /// Store instantiated individual ui in scene
@@ -46,29 +46,29 @@ public class AnatomyObject : MonoBehaviour
     /// True if needs to disable all controll interface except individual ui
     /// </summary>
     public bool OnlyIndividualUi { get=> _onlyIndividualUi; }
-    [SerializeField]
-    private bool _onlyIndividualUi;
+
+    [SerializeField]private bool _onlyIndividualUi;
 
     /// <summary>
     /// True if needs to disable all controll interface except individual ui
     /// </summary>
     public bool MultipleObjects { get=> _multipleObjects; }
-    [SerializeField]
-    private bool _multipleObjects;
+
+    [SerializeField]private bool _multipleObjects;
 
     /// <summary>
     /// True if object can't be scaled in scene
     /// </summary>
     public bool Unscalable { get => _unscalable; }
-    [SerializeField]
-    private bool _unscalable;
+
+    [SerializeField]private bool _unscalable;
 
     /// <summary>
     /// True if object can't be moved in scene
     /// </summary>
     public bool Unmovable { get => _unmovable; }
-    [SerializeField]
-    private bool _unmovable;
+
+    [SerializeField]private bool _unmovable;
 
     private void Start() 
     {
