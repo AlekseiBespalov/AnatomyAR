@@ -21,6 +21,7 @@
 namespace Anatomy.Scripts.ARCoreScripts.ManipulationSystem
 {
     using Anatomy.Scripts.ARCoreScripts.ManipulationSystemInternal;
+    using System;
     using UnityEngine;
 
     /// <summary>
@@ -77,7 +78,14 @@ namespace Anatomy.Scripts.ARCoreScripts.ManipulationSystem
                 var gameObject = hit.transform.gameObject;
                 if (gameObject != null)
                 {
-                    TargetObject = gameObject.GetComponentInParent<Manipulator>().gameObject;
+                    try 
+                    { 
+                        TargetObject = gameObject.GetComponentInParent<Manipulator>().gameObject;
+                    }
+                    catch(NullReferenceException e)
+                    {
+                        Debug.Log($"Manipulator not found on object: {e.Message}");
+                    }
                 }
             }
         }
