@@ -284,7 +284,7 @@ namespace Anatomy.Scripts.ARCoreScripts.ManipulationSystem
             if (m_SelectedObject == gameObject &&
                 ManipulationSystem.Instance.SelectedObject != gameObject)
             {
-                OnDeselected(m_SelectedObject);
+                OnDeselected(ManipulationSystem.Instance.SelectedObject);
                 m_SelectedObject = ManipulationSystem.Instance.SelectedObject;
             }
             else if (m_SelectedObject != gameObject &&
