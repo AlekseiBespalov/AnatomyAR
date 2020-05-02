@@ -62,25 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a058d8729a0602458c4c9045eeddbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchAnimator: {fileID: 6424155441642313312}
-  switchID: 0
-  isOn: 1
-  saveValue: 0
-  playerPrefsHelper: 0
-  OffEvents:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4320453575176699468}
-        m_MethodName: TurnOffAllMeat
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   OnEvents:
     m_PersistentCalls:
       m_Calls:
@@ -95,6 +76,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OffEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4320453575176699468}
+        m_MethodName: TurnOffAllMeat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  saveValue: 0
+  switchTag: Switch
+  isOn: 1
+  invokeAtStart: 1
 --- !u!95 &6424155441642313312
 Animator:
   serializedVersion: 3
@@ -105,7 +104,7 @@ Animator:
   m_GameObject: {fileID: 6372712675611021476}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3f508cfa46a99e34dae00774bafcea68, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

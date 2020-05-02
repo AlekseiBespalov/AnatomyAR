@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationName: Skeleton/Skull/SphenoidBoneDiscription
+  translationName: Skeleton/Skull/SphenoidBoneDescription
   FallbackText: Right sphenoid bone description
 --- !u!1 &8096775578984745414
 GameObject:

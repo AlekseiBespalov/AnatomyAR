@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationName: Skeleton/Skull/VomerDiscription
+  translationName: Skeleton/Skull/VomerDescription
   FallbackText: Vomer description
 --- !u!1 &8388012217259113907
 GameObject:

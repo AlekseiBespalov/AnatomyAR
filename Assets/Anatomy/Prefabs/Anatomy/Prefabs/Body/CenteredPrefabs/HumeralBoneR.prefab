@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationName: Skeleton/Body/HumeralsBoneDiscription
+  translationName: Skeleton/Body/HumeralsBoneDescription
   FallbackText: Right humeral bone description
 --- !u!1 &3834959445884848435
 GameObject:

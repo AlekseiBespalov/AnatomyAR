@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationName: Skeleton/Skull/ToothDOWNDiscription
+  translationName: Skeleton/Skull/ToothDOWNDescription
   FallbackText: Tooth down description
 --- !u!1 &6400760788772090904
 GameObject:

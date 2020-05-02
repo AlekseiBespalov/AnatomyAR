@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationName: Skeleton/Skull/PalatineBonesDiscription
+  translationName: Skeleton/Skull/PalatineBonesDescription
   FallbackText: Palatine bones description
 --- !u!1 &5262468754508275618
 GameObject:

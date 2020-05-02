@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationName: Skeleton/Body/CollarsboneDiscription
+  translationName: Skeleton/Body/CollarsboneDescription
   FallbackText: Left collar bone description
 --- !u!1 &8127800319257613014
 GameObject:
