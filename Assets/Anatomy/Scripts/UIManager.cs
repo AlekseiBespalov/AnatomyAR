@@ -20,6 +20,12 @@ public class UIManager : MonoBehaviour
     private GameObject StandartUI;
 
     /// <summary>
+    /// Whole panel which contains all inner fields and game objects
+    /// </summary>
+    [SerializeField]
+    private GameObject CompletePanel;
+
+    /// <summary>
     /// TextMeshPro component for displaying the name of selected anatomy objects
     /// </summary>
     [SerializeField]
@@ -91,12 +97,16 @@ public class UIManager : MonoBehaviour
         Debug.LogError("Anatomy spawned event is not implemented in UI manager.");
     }
 
+    private GameObject newSelectedObject = null;
     /// <summary>
     /// Changes interface when anatomy object selected.
     /// </summary>
     /// <param name="anatomySelectedObject">Selected by SelectingManipulator anatomy object.</param>
     public void OnAnatomyObjectSelected(AnatomyObject anatomySelectedObject)
     {
+        newSelectedObject = anatomySelectedObject.Prefab;
+
+        Debug.LogError("Selected method");
         RemoveButton.SetActive(true);
         StandartUI.SetActive(true);
 
@@ -108,6 +118,7 @@ public class UIManager : MonoBehaviour
 
         if(individualUiObject != null && instantiatedUi == null)
         {
+            Debug.LogError("E");
             GameObject tempInstantiatedUi = Instantiate(anatomySelectedObject.IndividualUiObject);
             tempInstantiatedUi.transform.SetParent(MainCanvas.transform, false);
             tempInstantiatedUi.SetActive(true);
@@ -115,20 +126,24 @@ public class UIManager : MonoBehaviour
         }
         else if(instantiatedUi != null && onlyIndividualUi)
         {
+            Debug.LogError("A");
             anatomySelectedObject.InstantiatedUi.SetActive(true);
             StandartUI.SetActive(false);
         }    
         else if(instantiatedUi == null && !onlyIndividualUi)
         {
+            Debug.LogError("B");
             StandartUI.SetActive(true);
         }
         else if(instantiatedUi != null && !onlyIndividualUi)
         {
-            anatomySelectedObject.InstantiatedUi.SetActive(true);
+            Debug.LogError("C");
             StandartUI.SetActive(true);
+            anatomySelectedObject.InstantiatedUi.SetActive(true);
         }
         else if(instantiatedUi == null && onlyIndividualUi)
         {
+            Debug.LogError("D");
             StandartUI.SetActive(false);
         }
     }
@@ -141,18 +156,20 @@ public class UIManager : MonoBehaviour
    
     public void OnObjectDeselected(AnatomyObject anatomyDeselectedObject)
     {
+        if (anatomyDeselectedObject.InstantiatedUi != null)
+        {
+            anatomyDeselectedObject.InstantiatedUi.SetActive(false);
+        }
+
+        if (anatomyDeselectedObject.Prefab == newSelectedObject)
+        {
+            return;
+        }
+        Debug.LogError("Deselected method");
         RemoveButton.SetActive(false);
         StandartUI.SetActive(false);
 
-        if(anatomyDeselectedObject.InstantiatedUi == null)
-        { 
-            StandartUI.SetActive(false);
-        }
-        else
-        {
-            anatomyDeselectedObject.InstantiatedUi.SetActive(false);
-            StandartUI.SetActive(false);
-        }
+        DisableInfoPanelWhenObjectDeselected();
     }
 
     /// <summary>
@@ -180,6 +197,11 @@ public class UIManager : MonoBehaviour
     {
         NamePanel.SetText(anatomyObject.AnatomyObjectName.text);
         DescriptionPanel.SetText(anatomyObject.AnatomyObjectDescription.text);
+    }
+
+    public void DisableInfoPanelWhenObjectDeselected()
+    {
+        CompletePanel.SetActive(false);
     }
 
     public void ExitApplication()
